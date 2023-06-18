@@ -1,30 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    service: reverseproxy
   name: reverseproxy
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      run: reverseproxy
-  replicas: 2
+      service: reverseproxy
   template:
     metadata:
       labels:
-        run: reverseproxy
+        service: reverseproxy
     spec:
       containers:
-      - name: reverseproxy
-        image: docker.io/phuongloan/reverseproxy:v1
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
+      - image: phuongloan/reverseproxy:v1
+        name: reverseproxy
+        imagePullPolicy: Always          
         resources:
-          limits:
-            cpu: "500m"
           requests:
-            cpu: "250m"
             memory: "64Mi"
-
+            cpu: "250m"
+          limits:
+            memory: "2048Mi"
+            cpu: "500m"       
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
@@ -32,7 +35,7 @@ metadata:
   labels:
     service: reverseproxy
   name: reverseproxy
-spec:
+spec:  
   ports:
   - name: "8080"
     port: 8080
