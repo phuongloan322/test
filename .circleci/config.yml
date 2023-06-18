@@ -13,12 +13,6 @@ jobs:
       - run:
           name: Build docker container - microservices
           command: |
-            echo "------------------ Installing dependencies---------------------------"
-            sudo curl -LO https://nodejs.org/dist/v16.16.0/node-v16.16.0-linux-x64.tar.xz
-            sudo tar -xvf node-v16.16.0-linux-x64.tar.xz
-            sudo cp -r node-v16.16.0-linux-x64/{bin,include,lib,share} /usr/
-            node --version => v
-            sudo brew install nodejs
 
             echo "--------- The images - Building ------------"
 
