@@ -23,7 +23,6 @@ spec:
             cpu: 500m
           requests:
             cpu: 300m
-            memory : "64Mi"
         env:
         - name: POSTGRES_USERNAME
           valueFrom:
