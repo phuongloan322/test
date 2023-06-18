@@ -28,13 +28,13 @@ jobs:
             docker build -t udagram-reverseproxy ./udagram-reverseproxy
             docker tag udagram-reverseproxy phuongloan/reverseproxy:v1
 
-            echo "-------- All images succesfully built----------"
+            echo "-------- All images succesfully built-----------"
 
             echo " ------- login in to hub--------"
 
             docker login -u phuongloan -p $DOCKERHUB_PASSWORD
 
-            echo "-------------- Pushing images to dockerhub-------"
+            echo "-------------- Pushing images to dockerhub--------"
             
             docker push phuongloan/udagram-api-feed:v1
             docker push phuongloan/udagram-api-user:v1
